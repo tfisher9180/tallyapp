@@ -1,35 +1,46 @@
-<div class="row">
-	<form method="POST" ng-submit="add()" name="addForm" class="col s12">
-		<div class="row">
-			<div class="col s4" input-field>
-				<input ng-model="student.fname" name="fname" id="fname" type="text" />
-				<label for="fname">First name</label>
-			</div>
-			<div class="col s4" input-field>
-				<input ng-model="student.lname" name="lname" id="lname" type="text" />
-				<label for="lname">Last name</label>
-			</div>
+<form method="POST" ng-submit="add()" name="addForm" class="col s12" style="margin-top: 1em;">
+	<div class="row">
+		<div class="col s6 l4" input-field>
+			<input ng-model="student.fname" name="fname" id="fname" type="text" />
+			<label for="fname">First name</label>
 		</div>
-		<div class="row">
-			<div class="col s4" input-field>
-				<select ng-model="student.site" material-select>
-					<option value="" disabled>Choose site</option>
-					<option ng-repeat="value in sites" value="{{value}}">{{value}}</option>
-				</select>
+		<div class="col s6 l4" input-field>
+			<input ng-model="student.lname" name="lname" id="lname" type="text" />
+			<label for="lname">Last name</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s12 l4" input-field>
+			<select ng-model="student.site" material-select>
+				<option value="" disabled>Choose site</option>
+				<option ng-repeat="(key, value) in sites" value="{{value}}">{{key}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<button class="btn waves-effect waves-light red" type="submit">
+			Add
+		</button>
+	</div>
+</form>
+
+<div class="row" style="margin-top: 1em;">
+	<div class="col s12 l3">
+		<a href="#">
+			<div class="card-panel cyan">
+				<span class="card-title white-text">Total ACE Testers</span>
+				<p class="white-text">{{counts.total}}</p>
 			</div>
-		</div>
-		<div class="row">
-			<button class="btn waves-effect waves-light red" type="submit">
-				Add
-			</button>
-		</div>
-	</form>
+		</a>
+	</div>
 </div>
 <div class="row">
-	<div class="col s12 m3" ng-repeat="site in sites">
-		<div class="card-panel teal">
-			<span class="card-title white-text">{{site}}</span>
-			<p class="white-text">{{(students | filterSite: site).length}}</p>
-		</div>
+	<div class="col s12 l3" ng-repeat="(key, value) in sites">
+		<a href="/{{value}}">
+			<div class="card-panel blue-grey">
+				<span class="card-title white-text">{{key}}</span>
+				<p class="white-text">{{counts[value]}}</p>
+			</div>
+		</a>
 	</div>
 </div>

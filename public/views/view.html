@@ -1,0 +1,18 @@
+<h2 class="header blue-text">{{site | capitalize}}</h2>
+<p>{{site | capitalize}} has had a total of {{students.length}} ACE tester(s).</p>
+<table class="striped">
+	<thead>
+		<tr>
+			<th>Site</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="student in students">
+			<td>{{student.site | capitalize}}</td>
+			<td>{{student.fname | capitalize}}</td>
+			<td>{{student.lname | capitalize}}</td>
+		</tr>
+	</tbody>
+</table>
