@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tallyapp">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<base href="/" />
+
+		<title>RSC Tally App</title>
+
+		<link rel="stylesheet" type="text/css" href="libs/materialize-css/dist/css/materialize.min.css" />
+		<link rel="stylesheet" type="text/css" href="custom/css/main.css" />
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+		<script src="libs/jquery/dist/jquery.min.js"></script>
+		<script src="libs/angular/angular.min.js"></script>
+		<script src="libs/angular-route/angular-route.min.js"></script>
+		<script src="libs/angular-resource/angular-resource.min.js"></script>
+		<script src="libs/materialize-css/dist/js/materialize.min.js"></script>
+		<script src="libs/angular-materialize/src/angular-materialize.min.js"></script>
+		<script src="custom/js/app.js"></script>
+	</head>
+	<body>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo center">RSC ACE Testing 2017</a>
+			</div>
+		</nav>
+
+		<main ng-controller="MainController">
+			<div class="container">
+				<div class="row">
+					<form class="col s12">
+						<div class="row">
+							<div class="col s4" input-field>
+								<input ng-model="student.fname" name="fname" id="fname" type="text" />
+								<label for="fname">First name</label>
+							</div>
+							<div class="col s4" input-field>
+								<input ng-model="student.lname" name="lname" id="lname" type="text" />
+								<label for="lname">Last name</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s4" input-field>
+								<select ng-model="student.site" material-select>
+									<option ng-repeat="value in sites" value="{{value}}">{{value}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<button class="btn waves-effect waves-light red" type="submit">
+								Add
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
