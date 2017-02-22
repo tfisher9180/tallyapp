@@ -15,6 +15,9 @@ mongoose.connect('mongodb://tech:testing@ds157459.mlab.com:57459/tallyapp');
 /* initialize app as express app */
 var app = express();
 
+/* set port */
+app.set('port', (process.env.PORT || 5000));
+
 /* set static custom file location */
 app.use('/custom', express.static(__dirname + '/public'));
 
@@ -118,6 +121,6 @@ app.get('*', function(req, res) {
 });
 
 /* start server */
-app.listen(3000, function() {
+app.listen(app.get('port'), function() {
 	console.log('App started on port', '3000');
 });
