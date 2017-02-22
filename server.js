@@ -41,13 +41,23 @@ var Student = mongoose.model('Student', {
 // get all students
 app.get('/api/students', function(req, res) {
 
-	Student.find(function(err, students) {
-		if (err) {
-			res.send(err);
-		} else {
-			res.json(students);
+		if (req.query.fields) {
+			Student.find({}, req.query.fields, function(err, students) {
+				if (err) {
+					res.send(err);
+				} else {
+					res.json(students);
+				}
+			});
 		}
-	});
+		
+		Student.find(function(err, students) {
+			if (err) {
+				res.send(err);
+			} else {
+				res.json(students);
+			}
+		});
 
 });
 
@@ -65,14 +75,7 @@ app.post('/api/students', function(req, res) {
 		if (err) {
 			res.send(err);
 		} else {
-			/* return all students after add */
-			Student.find(function(err, students) {
-				if (err) {
-					res.send(err);
-				} else {
-					res.json(students);
-				}
-			});
+			res.sendStatus(200);
 		}
 	});
 
