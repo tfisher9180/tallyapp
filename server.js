@@ -36,7 +36,8 @@ app.use(methodOverride());
 var Student = mongoose.model('Student', {
 	site: String,
 	fname: String,
-	lname: String
+	lname: String,
+	date: { type: Date, default: Date.now }
 });
 
 /* API */
@@ -122,5 +123,5 @@ app.get('*', function(req, res) {
 
 /* start server */
 app.listen(app.get('port'), function() {
-	console.log('App started on port', '3000');
+	console.log('App started on port', app.get('port'));
 });

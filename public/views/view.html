@@ -4,6 +4,7 @@
 	<thead>
 		<tr>
 			<th>Site</th>
+			<th>Date</th>
 			<th>First Name</th>
 			<th>Last Name</th>
 		</tr>
@@ -11,6 +12,7 @@
 	<tbody>
 		<tr ng-repeat="student in students">
 			<td>{{student.site | capitalize}}</td>
+			<td>{{student.date | date:'MM/dd/yyyy'}}</td>
 			<td>{{student.fname | capitalize}}</td>
 			<td>{{student.lname | capitalize}}</td>
 		</tr>

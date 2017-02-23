@@ -71,7 +71,8 @@ app.controller('MainCtrl', ['$scope', 'Count', 'Student', function($scope, Count
 		'Tempe': 'tempe', 
 		'Surprise': 'surprise', 
 		'Southern': 'southern', 
-		'Thomas': 'thomas'
+		'Thomas': 'thomas',
+		'Luke': 'luke'
 	}
 
 	Student.query({fields: 'site'}, function(data) {
