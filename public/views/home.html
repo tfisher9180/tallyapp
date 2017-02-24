@@ -9,7 +9,7 @@
 				</div>
 				<div class="col s9">
 					<h2 class="card-title" style="margin-top: 0">Add student</h2> <!-- verified user -->
-					<p>Enter the student's name and site location below.</p>
+					<p>Enter the student's name and the site they tested at below.</p>
 				</div>
 			</div>
 			<form method="POST" ng-submit="add()" name="addForm" style="margin-top: 1em;">
@@ -43,11 +43,11 @@
 <div class="card card-panel">
 	<div class="row">
 		<div class="col l6">
-			<h5 class='card-title'>Showing results for {{activeSite}}</h5>
+			<h5 class='card-title'>Showing results for {{activeSite ? activeSite : 'all' | capitalize}}</h5>
 		</div>
-		<div class="col l6">
+		<div class="col l4 offset-l2">
 			<select ng-model="activeSite" material-select class="browser-default">
-				<option value="all">All sites</option>
+				<option value="">All sites</option>
 				<option ng-repeat="(key, value) in sites" value="{{value}}">{{key}}</option>
 			</select>
 		</div>
@@ -62,7 +62,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="student in students">
+			<tr ng-repeat="student in students | filter: activeSite | orderBy: '-date'">
 				<td>{{student.site | capitalize}}</td>
 				<td>{{student.date | date:'MM/dd/yyyy'}}</td>
 				<td>{{student.fname | capitalize}}</td>

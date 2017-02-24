@@ -32,11 +32,11 @@ app.factory('Student', ['$resource', function($resource) {
 
 app.controller('MainCtrl', ['$scope', 'Student', function($scope, Student) {
 	$scope.student = new Student();
-	$scope.activeSite = 'all';
+	$scope.activeSite = '';
 	$scope.student.site = "";
 	$scope.sites = {
 		'Avondale': 'avondale', 
-		'Queen Creek': 'queen_creek', 
+		'Queen Creek': 'Queen Creek', 
 		'Northern': 'northern', 
 		'Tempe': 'tempe', 
 		'Surprise': 'surprise', 
