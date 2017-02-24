@@ -45,31 +45,13 @@ var Student = mongoose.model('Student', {
 // get all students
 app.get('/api/students', function(req, res) {
 
-		if (req.query.site) {
-			Student.find({site: req.query.site}, function(err, students) {
-				if (err) {
-					res.send(err);
-				} else {
-					res.json(students);
-				}
-			});
-		} else if (req.query.fields) {
-			Student.find({}, req.query.fields, function(err, students) {
-				if (err) {
-					res.send(err);
-				} else {
-					res.json(students);
-				}
-			});
+	Student.find(function(err, students) {
+		if (err) {
+			res.send(err);
 		} else {
-			Student.find(function(err, students) {
-				if (err) {
-					res.send(err);
-				} else {
-					res.json(students);
-				}
-			});
+			res.json(students);
 		}
+	});
 
 });
 

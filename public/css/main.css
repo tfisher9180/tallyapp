@@ -1,8 +1,12 @@
 nav.nav-extended {
-	height: 10em;
+	height: 20em;
+	/*background-image: url('../img/mountain1.png');
+	background-position: 175% 90%;
+	background-size: 80%;
+	background-color: #27353F;*/
 }
 .nudge {
-	margin-top: -2.5em;
+	margin-top: -10em;
 }
 .tabs .indicator {
 	background-color: #673ab7;

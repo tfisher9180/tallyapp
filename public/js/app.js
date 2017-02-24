@@ -10,10 +10,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 		templateUrl: '/custom/views/home.html',
 		controller: 'MainCtrl'
 	}).
-	when('/:site', {
-		templateUrl: '/custom/views/view.html',
-		controller: 'ViewCtrl'
-	}).
 	otherwise({
 		redirectTo: '/'
 	});
@@ -34,35 +30,9 @@ app.factory('Student', ['$resource', function($resource) {
 
 }]);
 
-app.factory('Count', [function(Student) {
-
-	return {
-		getCountBySite: function(data, sites) {
-
-			var counts = {};
-			counts.total = data.length
-			angular.forEach(sites, function(site) {
-				if (data.length > 0) {
-					var count = 0;
-					for (var i = 0; i < data.length; i++) {
-						if (data[i].site == site) {
-							count++;
-						}
-					}
-					counts[site] = count;
-				} else {
-					counts[site] = 0;
-				}
-			});
-			return counts;
-
-		}
-	};
-
-}]);
-
-app.controller('MainCtrl', ['$scope', 'Count', 'Student', function($scope, Count, Student) {
+app.controller('MainCtrl', ['$scope', 'Student', function($scope, Student) {
 	$scope.student = new Student();
+	$scope.activeSite = 'all';
 	$scope.student.site = "";
 	$scope.sites = {
 		'Avondale': 'avondale', 
@@ -73,10 +43,10 @@ app.controller('MainCtrl', ['$scope', 'Count', 'Student', function($scope, Count
 		'Southern': 'southern', 
 		'Thomas': 'thomas',
 		'Luke': 'luke'
-	}
+	};
 
-	Student.query({fields: 'site'}, function(data) {
-		$scope.counts = Count.getCountBySite(data, $scope.sites);
+	Student.query(function(data) {
+		$scope.students = data;
 	});
 
 	$scope.add = function() {
@@ -87,19 +57,10 @@ app.controller('MainCtrl', ['$scope', 'Count', 'Student', function($scope, Count
 			$scope.student.site = '';
 			$scope.addForm.$setPristine();
 
-			Student.query({fields: 'site'}, function(data) {
-				$scope.counts = Count.getCountBySite(data, $scope.sites);
+			Student.query(function(data) {
+				$scope.students = data;
 			});
 		});
 	};
-}]);
-
-app.controller('ViewCtrl', ['$scope', '$routeParams', 'Student', function($scope, $routeParams, Student) {
-	var site = $routeParams.site;
-	$scope.site = site;
-
-	Student.query({site: site}, function(data) {
-		$scope.students = data;
-	});
 }]);
 
